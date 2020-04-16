@@ -16,8 +16,6 @@ public class Dao implements Serializable {
             em.getTransaction().begin();
             em.persist(m);
             em.getTransaction().commit();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -32,8 +30,6 @@ public class Dao implements Serializable {
             Musica musica = em.find(Musica.class, m.getId());
             em.merge(musica);
             em.getTransaction().commit();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -48,8 +44,6 @@ public class Dao implements Serializable {
             Musica musica = em.find(Musica.class, m.getId());
             em.remove(musica);
             em.getTransaction().commit();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

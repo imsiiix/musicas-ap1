@@ -3,6 +3,8 @@ package util;
 import dao.Dao;
 import entity.Musica;
 
+import java.util.List;
+
 public class PopulaBanco {
     public static void main(String[] args) {
 
@@ -57,11 +59,10 @@ public class PopulaBanco {
 
 //        new Dao().remover((long) 4);
 
-//        List<Musica> lista = new Dao().getMusicas();
-//
-//        for(Musica l : lista){
-//            Long c = l.getId();
-//            new Dao().remover(c);
-//            System.out.println(l.toString());
-//        }
+        List<Musica> lista = Dao.listarTodos();
+
+        for (Musica l : lista) {
+            System.out.println(l.toString());
+        }
     }
+}

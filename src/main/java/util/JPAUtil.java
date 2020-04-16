@@ -6,6 +6,7 @@ import javax.persistence.Persistence;
 import java.io.Serializable;
 
 public class JPAUtil implements Serializable {
+
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("musicas");
 
     public static EntityManager createEntityManager() {
