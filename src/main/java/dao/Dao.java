@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
 
-public class Dao implements Serializable {
+public class Dao {
 
     public static void criar(Musica m) {
         EntityManager em = JPAUtil.createEntityManager();

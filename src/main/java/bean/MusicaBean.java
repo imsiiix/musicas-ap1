@@ -5,46 +5,37 @@ import entity.Musica;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-@ManagedBean(name = "musica")
-@ViewScoped
-public class MusicaBean implements Serializable {
+@SessionScoped
+@ManagedBean
+public class MusicaBean {
 
-    private static final long serialVersionUID = -5967975213833000396L;
     private Musica musica = new Musica();
-    private List<Musica> musicas = new ArrayList<Musica>();
+    private List<Musica> musicas = new ArrayList<>();
 
-    @PostConstruct
-    public void init() {
-        musica = new Musica();
-        musicas = new ArrayList<Musica>();
-    }
-
-    public String reinit() {
+    public String criar() {
+        Dao.criar(musica);
         musica = new Musica();
         return null;
     }
 
-    public void criar(Musica musica) {
-        Dao.criar(musica);
-        musica = new Musica();
-    }
-
-    public String atualizar(Musica musica) {
+    public String atualizar() {
         Dao.atualizar(musica);
-        return "index.xhtml";
+        musica = new Musica();
+        return "listar.xhtml";
     }
 
-    public void deletar(Musica musica) {
-        Dao.deletar(musica);
+    public void deletar() {
+        Dao.deletar(this.musica);
     }
 
-    public List<Musica> listarTodos() {
-        return musicas = Dao.listarTodos();
+    public String listar() {
+        musicas = Dao.listarTodos();
+        return "listar.xhtml";
     }
 
     public Musica getMusica() {

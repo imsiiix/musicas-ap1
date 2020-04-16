@@ -1,18 +1,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-    <p:outputLabel value="#{helloworld.message}" />
+
 </h:head>
+
 <h:body>
-    <p:panel id="horizontal" header="Horizontal Toggle" toggleable="true" toggleOrientation="horizontal">
-        <p:panelGrid columns="2" cellpadding="10">
+    <h:form id="form">
+        <p:growl id="msgs"/>
 
-            <p:outputLabel value="#{helloworld.message}"/>
-        </p:panelGrid>
-    </p:panel>
+        <p:panel id="panel" header="Adicione uma nova música" columns="1"
+                 style="margin: 2% 10% 20px;">
 
+            <p:panelGrid columns="3" style="border-style: none" layout="grid"
+                         styleClass="showcase-text-align-center">
+
+                <h:outputLabel for="nome" value="Nome: " style="border-style: none">
+                    <h:inputText id="nome" value="#{musicaBean.musica.nome}" required="true"/>
+                </h:outputLabel>
+
+                <h:outputLabel for="banda" value="Banda: " style="border-style: none">
+                    <h:inputText id="banda" value="#{musicaBean.musica.banda}" required="true"/>
+                </h:outputLabel>
+
+                <h:outputLabel for="autor" value="Autor: " style="border-style: none">
+                    <h:inputText id="autor" value="#{musicaBean.musica.compositor}" required="true"/>
+                </h:outputLabel>
+            </p:panelGrid>
+
+            <p:outputLabel>
+                <p:commandButton action="#{musicaBean.criar}" value="Salvar Música"/>
+            </p:outputLabel>
+            <p:outputLabel>
+                <p:commandButton action="listar.xhtml" value="Listar Músicas"/>
+            </p:outputLabel>
+
+        </p:panel>
+    </h:form>
 </h:body>
 </html>

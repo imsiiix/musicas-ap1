@@ -1,11 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+
+</h:head>
+
+<h:body>
+    <h:form>
+        <h:commandButton action="index.xhtml" value="Cadastrar novas musicas"/>
+        <h:panelGrid columns="5">
+            <h:dataTable value="#{musicaBean.listar}" var="m">
+                <h:column headerText="Nome">
+                    <h:outputText value="#{m.nome}"/>
+                </h:column>
+                <h:column headerText="Banda">
+                    <h:outputText value="#{m.banda}"/>
+                </h:column>
+                <h:column headerText="Autor">
+                    <h:outputText value="#{m.compositor}"/>
+                </h:column>
+                <h:column headerText="Editar">
+                    <h:commandButton action="editarMusica.xhtml" value="Editar" />
+                </h:column>
+                <h:column headerText="Deletar">
+                    <h:commandButton action="#{musicaBean.deletar}" value="Deletar"/>
+                </h:column>
+            </h:dataTable>
+        </h:panelGrid>
+    </h:form>
+</h:body>
 </html>
