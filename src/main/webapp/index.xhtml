@@ -11,12 +11,12 @@
 
 <h:body>
     <h:form id="form">
-        <p:growl id="msgs"/>
+        <h:commandButton action="listar.xhtml" value="Listar musicas"/>
 
-        <p:panel id="panel" header="Adicione uma nova música" columns="1"
-                 style="margin: 2% 10% 20px;">
+        <h:panelGrid id="panel" header="Adicione uma nova música" columns="1"
+                 style="margin: 2% 15% 20px;">
 
-            <p:panelGrid columns="3" style="border-style: none" layout="grid"
+            <h:panelGrid columns="5" style="border-style: none" layout="grid"
                          styleClass="showcase-text-align-center">
 
                 <h:outputLabel for="nome" value="Nome: " style="border-style: none">
@@ -27,19 +27,14 @@
                     <h:inputText id="banda" value="#{musicaBean.musica.banda}" required="true"/>
                 </h:outputLabel>
 
-                <h:outputLabel for="autor" value="Autor: " style="border-style: none">
+                <h:outputLabel for="autor" value="Compositor: " style="border-style: none">
                     <h:inputText id="autor" value="#{musicaBean.musica.compositor}" required="true"/>
                 </h:outputLabel>
-            </p:panelGrid>
 
-            <p:outputLabel>
-                <p:commandButton action="#{musicaBean.criar}" value="Salvar Música"/>
-            </p:outputLabel>
-            <p:outputLabel>
-                <p:commandButton action="listar.xhtml" value="Listar Músicas"/>
-            </p:outputLabel>
-
-        </p:panel>
+                <p:commandButton id="btn_reset" value="Limpar" type="reset"/>
+                <p:commandButton id="btn_add" value="Salvar" action="#{musicaBean.criar}" />
+            </h:panelGrid>
+        </h:panelGrid>
     </h:form>
 </h:body>
 </html>

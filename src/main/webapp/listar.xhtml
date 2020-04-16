@@ -9,28 +9,31 @@
 
 </h:head>
 
-<h:body>
-    <h:form>
-        <h:commandButton action="index.xhtml" value="Cadastrar novas musicas"/>
-        <h:panelGrid columns="5">
-            <h:dataTable value="#{musicaBean.listar}" var="m">
-                <h:column headerText="Nome">
-                    <h:outputText value="#{m.nome}"/>
-                </h:column>
-                <h:column headerText="Banda">
-                    <h:outputText value="#{m.banda}"/>
-                </h:column>
-                <h:column headerText="Autor">
-                    <h:outputText value="#{m.compositor}"/>
-                </h:column>
-                <h:column headerText="Editar">
-                    <h:commandButton action="editarMusica.xhtml" value="Editar" />
-                </h:column>
-                <h:column headerText="Deletar">
-                    <h:commandButton action="#{musicaBean.deletar}" value="Deletar"/>
-                </h:column>
-            </h:dataTable>
-        </h:panelGrid>
-    </h:form>
-</h:body>
+<h:form>
+    <h:commandButton action="index.xhtml" value="Cadastrar novas musicas"/>
+    <h:panelGrid columns="6">
+        <h:dataTable value="#{musicaBean.musicasDb()}" var="m">
+            <h:column headerText="id">
+                #{m.id}
+            </h:column>
+            <h:column headerText="Nome">
+                #{m.nome}"
+            </h:column>
+            <h:column headerText="Banda">
+                #{m.banda}
+            </h:column>
+            <h:column headerText="Compositor">
+                #{m.compositor}
+            </h:column>
+            <h:column headerText="Editar">
+                <p:commandLink action="editar" value="Editar">
+                    <f:setPropertyActionListener value="#{m}" target="#{musicaBean.musica}"/>
+                </p:commandLink>
+            </h:column>
+            <h:column headerText="Deletar">
+                <h:commandButton action="#{musicaBean.deletar()}" value="Deletar"/>
+            </h:column>
+        </h:dataTable>
+    </h:panelGrid>
+</h:form>
 </html>

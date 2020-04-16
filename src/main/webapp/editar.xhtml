@@ -3,21 +3,23 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
 
 </h:head>
 
 <h:body>
     <h:form id="form">
-        <h:commandButton action="listar.xhtml" value="Listar musicas"/>
 
-        <h:panelGrid id="panel" header="Adicione uma nova música" columns="1"
+        <h:panelGrid id="panel" header="Edita a música" columns="1"
                  style="margin: 2% 15% 20px;">
 
-            <h:panelGrid columns="5" style="border-style: none" layout="grid"
+            <h:panelGrid columns="4" style="border-style: none" layout="grid"
                          styleClass="showcase-text-align-center">
+
+                <h:outputLabel for="id" value="Nome: " style="border-style: none">
+                    <h:inputText id="id" value="#{musicaBean.musica.id}" disabled="true"/>
+                </h:outputLabel>
 
                 <h:outputLabel for="nome" value="Nome: " style="border-style: none">
                     <h:inputText id="nome" value="#{musicaBean.musica.nome}" required="true"/>
@@ -27,14 +29,12 @@
                     <h:inputText id="banda" value="#{musicaBean.musica.banda}" required="true"/>
                 </h:outputLabel>
 
-                <h:outputLabel for="autor" value="Compositor: " style="border-style: none">
+                <h:outputLabel for="autor" value="Autor: " style="border-style: none">
                     <h:inputText id="autor" value="#{musicaBean.musica.compositor}" required="true"/>
                 </h:outputLabel>
-
-                <p:commandButton id="btn_reset" value="Limpar" type="reset"/>
-                <p:commandButton id="btn_add" value="Salvar" action="#{musicaBean.criar}" />
             </h:panelGrid>
         </h:panelGrid>
+        <h:commandButton action="#{musicaBean.atualizar()}" value="Editar Música"/>
     </h:form>
 </h:body>
 </html>

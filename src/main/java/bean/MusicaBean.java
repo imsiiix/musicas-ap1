@@ -4,9 +4,10 @@ import dao.Dao;
 import entity.Musica;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.io.Serializable;
+import javax.faces.context.FacesContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,28 +15,38 @@ import java.util.List;
 @ManagedBean
 public class MusicaBean {
 
-    private Musica musica = new Musica();
-    private List<Musica> musicas = new ArrayList<>();
+    private Musica musica;
+    private List<Musica> musicas;
+
+    @PostConstruct
+    public void init(){
+        musica = new Musica();
+        musicas = new ArrayList<Musica>();
+    }
 
     public String criar() {
         Dao.criar(musica);
-        musica = new Musica();
-        return null;
+        Musica musica = new Musica();
+        return "/index.xhtml";
     }
 
     public String atualizar() {
         Dao.atualizar(musica);
-        musica = new Musica();
+        Musica musica = new Musica();
         return "listar.xhtml";
     }
 
     public void deletar() {
-        Dao.deletar(this.musica);
+        Dao.deletar(musica);
     }
 
     public String listar() {
         musicas = Dao.listarTodos();
         return "listar.xhtml";
+    }
+
+    public List musicasDb(){
+        return Dao.listarTodos();
     }
 
     public Musica getMusica() {

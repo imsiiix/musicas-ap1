@@ -5,7 +5,6 @@ import util.JPAUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.io.Serializable;
 import java.util.List;
 
 public class Dao {
