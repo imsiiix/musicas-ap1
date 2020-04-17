@@ -24,6 +24,7 @@ public class Dao {
         m = em.find(Musica.class, musica.getId());
         em.getTransaction().commit();
         em.close();
+        System.out.println(m.toString());
         return m;
     }
 

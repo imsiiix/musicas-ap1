@@ -53,9 +53,9 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Atualizar</f:facet>
-                <h:commandButton action="#{musicaBean.editar(m)}" value="Atualizar"
+                <h:commandButton action="#{musicaBean.editar}" value="Atualizar"
                                  class="btn btn-primary">
-                    <f:param name="editMusicaId" value="#{m.id}"/>
+                    <f:setPropertyActionListener value="#{m}" target="#{musicaBean.musica}"/>
                 </h:commandButton>
             </h:column>
             <h:column>

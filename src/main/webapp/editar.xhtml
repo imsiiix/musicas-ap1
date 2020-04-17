@@ -20,34 +20,34 @@
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <h:outputLabel for="id">Id</h:outputLabel>
-                <h:inputText id="id" value="#{musicaBean.musica.id}" disabled="true" class="form-control"/>
+                <h:inputText id="id" value="#{musicaBean.musicaId.id}" disabled="true" class="form-control"/>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <h:outputLabel for="nome">Nome</h:outputLabel>
-                <h:inputText id="nome" value="#{musicaBean.musica.nome}" class="form-control"/>
+                <h:inputText id="nome" value="#{musicaBean.musicaId.nome}" class="form-control"/>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <h:outputLabel for="banda">Banda</h:outputLabel>
-                <h:inputText id="banda" value="#{musicaBean.musica.banda}" class="form-control"/>
+                <h:inputText id="banda" value="#{musicaBean.musicaId.banda}" class="form-control"/>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <h:outputLabel for="compositor">Compositor</h:outputLabel>
-                <h:inputText id="compositor" value="#{musicaBean.musica.compositor}" class="form-control"/>
+                <h:inputText id="compositor" value="#{musicaBean.musicaId.compositor}" class="form-control"/>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <div style="text-align: center;">
-                    <h:commandButton value="Update" action="#{musicaBean.atualizar}"
+                    <h:commandButton value="Atualizar" action="#{musicaBean.atualizar()}"
                                      class="btn btn-primary" style="width: 80px;">
                     </h:commandButton>
                 </div>

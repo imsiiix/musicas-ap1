@@ -5,34 +5,39 @@ import entity.Musica;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
 import java.util.List;
 
-@ManagedBean
+@ManagedBean(name = "musicaBean")
+@SessionScoped
 public class MusicaBean {
 
     private Musica musica = new Musica();
+    private Musica musicaId = new Musica();
     private Dao dao = new Dao();
     private List<Musica> musicas = new ArrayList<>();
 
     @PostConstruct
     public void init() {
         musica = new Musica();
+        musicaId = new Musica();
         musicas = new ArrayList<>();
     }
 
-    public String criar() {
+    public void criar() {
         dao.criar(musica);
-        return "/criar.xhtml?faces-redirect=true";
+        this.musica = new Musica();
+//        return "/criar.xhtml?faces-redirect=true";
     }
 
-    public String editar(Musica musica) {
-        dao.buscarPorId(musica);
+    public String editar() {
+        this.musicaId = dao.buscarPorId(musica);
         return "/editar.xhtml?faces-redirect=true";
     }
 
     public String atualizar() {
-        dao.atualizar(musica);
+        dao.atualizar(musicaId);
         return "/listar.xhtml?faces-redirect=true";
     }
 
@@ -50,6 +55,14 @@ public class MusicaBean {
 
     public void setMusica(Musica musica) {
         this.musica = musica;
+    }
+
+    public Musica getMusicaId() {
+        return musicaId;
+    }
+
+    public void setMusicaId(Musica musicaId) {
+        this.musicaId = musicaId;
     }
 
     public Dao getDao() {
