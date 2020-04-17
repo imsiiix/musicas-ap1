@@ -3,54 +3,52 @@ package dao;
 import entity.Musica;
 import util.JPAUtil;
 
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Map;
 
 public class Dao {
 
-    public static void criar(Musica m) {
+    public void criar(Musica m) {
         EntityManager em = JPAUtil.createEntityManager();
-        try {
             em.getTransaction().begin();
             em.persist(m);
             em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
             em.close();
-        }
     }
 
-    public static void atualizar(Musica m) {
+    public Musica buscarPorId(Musica musica) {
         EntityManager em = JPAUtil.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            Musica musica = em.find(Musica.class, m.getId());
-            em.merge(musica);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            em.close();
-        }
+        Musica m;
+        em.getTransaction().begin();
+        m = em.find(Musica.class, musica.getId());
+        em.getTransaction().commit();
+        em.close();
+        System.out.println("Metodo BuscarPorId - DAO " + m.toString());
+        return m;
     }
 
-    public static void deletar(Musica m) {
+    public void atualizar(Musica musica) {
         EntityManager em = JPAUtil.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            Musica musica = em.find(Musica.class, m.getId());
-            em.remove(musica);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            em.close();
-        }
+        em.getTransaction().begin();
+        em.merge(musica);
+        em.getTransaction().commit();
+        em.close();
     }
 
-    public static List<Musica> listarTodos() {
+    public void deletar(Musica musica) {
+        EntityManager em = JPAUtil.createEntityManager();
+        Musica m;
+        em.getTransaction().begin();
+        m = em.find(Musica.class, musica.getId());
+        em.remove(m);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public List listarTodos() {
         EntityManager em = JPAUtil.createEntityManager();
         Query q = em.createQuery("select m from Musica m");
         return q.getResultList();

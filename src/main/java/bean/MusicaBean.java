@@ -4,49 +4,83 @@ import dao.Dao;
 import entity.Musica;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import java.util.ArrayList;
 import java.util.List;
 
-@SessionScoped
 @ManagedBean
 public class MusicaBean {
 
-    private Musica musica;
-    private List<Musica> musicas;
+    private Long id;
+    private String nome;
+    private String banda;
+    private String compositor;
+
+    private Musica musica = new Musica();
+    private Dao dao = new Dao();
+    private List<Musica> musicas = new ArrayList<>();
 
     @PostConstruct
-    public void init(){
+    public void init() {
         musica = new Musica();
-        musicas = new ArrayList<Musica>();
+        musicas = new ArrayList<>();
     }
 
     public String criar() {
-        Dao.criar(musica);
-        Musica musica = new Musica();
-        return "/index.xhtml";
+        dao.criar(musica);
+        return "/criar.xhtml?faces-redirect=true";
     }
 
-    public String atualizar() {
-        Dao.atualizar(musica);
-        Musica musica = new Musica();
-        return "listar.xhtml";
+    public String editar(Musica musica) {
+        musica = dao.buscarPorId(musica);
+        System.out.println("Metodo editar - BEAN - " + musica.toString());
+        return "/editar.xhtml?faces-redirect=true";
     }
 
-    public void deletar() {
-        Dao.deletar(musica);
+    public String atualizar(Musica musica) {
+        dao.atualizar(musica);
+        System.out.println("Método atualizar - BEAN - " + musica.toString());
+        return "/listar.xhtml?faces-redirect=true";
     }
 
-    public String listar() {
-        musicas = Dao.listarTodos();
-        return "listar.xhtml";
+    public void deletar(Musica musica) {
+        dao.deletar(musica);
     }
 
-    public List musicasDb(){
-        return Dao.listarTodos();
+    public List musicasDb() {
+        return dao.listarTodos();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getBanda() {
+        return banda;
+    }
+
+    public void setBanda(String banda) {
+        this.banda = banda;
+    }
+
+    public String getCompositor() {
+        return compositor;
+    }
+
+    public void setCompositor(String compositor) {
+        this.compositor = compositor;
     }
 
     public Musica getMusica() {
@@ -55,6 +89,14 @@ public class MusicaBean {
 
     public void setMusica(Musica musica) {
         this.musica = musica;
+    }
+
+    public Dao getDao() {
+        return dao;
+    }
+
+    public void setDao(Dao dao) {
+        this.dao = dao;
     }
 
     public List<Musica> getMusicas() {

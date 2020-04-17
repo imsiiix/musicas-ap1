@@ -1,39 +1,76 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
+<html xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
+        <title>Musicas</title>
+    <h:outputStylesheet name="/css/bootstrap.min.css"/>
+    <style type="text/css">
+            table {
+                border-collapse: collapse;
+                width: 95%;
+            }
 
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2
+            }
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+        </style>
 </h:head>
 
-<h:form>
-    <h:commandButton action="index.xhtml" value="Cadastrar novas musicas"/>
-    <h:panelGrid columns="6">
-        <h:dataTable value="#{musicaBean.musicasDb()}" var="m">
-            <h:column headerText="id">
-                #{m.id}
+<h:body>
+    <h:form>
+        <div style="text-align: center;">
+            <h2><h:outputText value="Músicas"/></h2>
+        </div>
+        <!--binding="#{table}"-->
+        <h:dataTable value="#{musicaBean.musicasDb()}" var="m"
+                     class="table table-striped table-hover table-bordered">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{m.id}"/>
             </h:column>
-            <h:column headerText="Nome">
-                #{m.nome}"
+            <h:column>
+                <f:facet name="header">Nome</f:facet>
+                <h:outputText value="#{m.nome}"/>
             </h:column>
-            <h:column headerText="Banda">
-                #{m.banda}
+            <h:column>
+                <f:facet name="header">Banda</f:facet>
+                <h:outputText value="#{m.banda}"/>
             </h:column>
-            <h:column headerText="Compositor">
-                #{m.compositor}
+            <h:column>
+                <f:facet name="header">Compositor</f:facet>
+                <h:outputText value="#{m.compositor}"/>
             </h:column>
-            <h:column headerText="Editar">
-                <p:commandLink action="editar" value="Editar">
-                    <f:setPropertyActionListener value="#{m}" target="#{musicaBean.musica}"/>
-                </p:commandLink>
+            <h:column>
+                <f:facet name="header">Atualizar</f:facet>
+                <h:commandButton action="#{musicaBean.editar(m)}" value="Atualizar"
+                                 class="btn btn-primary">
+                    <f:param name="editMusicaId" value="#{m.id}" />
+                </h:commandButton>
             </h:column>
-            <h:column headerText="Deletar">
-                <h:commandButton action="#{musicaBean.deletar()}" value="Deletar"/>
+            <h:column>
+                <f:facet name="header">Deletar</f:facet>
+                <h:commandButton action="#{musicaBean.deletar(m)}" value="Delete"
+                                 class="btn btn-danger">
+                </h:commandButton>
             </h:column>
         </h:dataTable>
-    </h:panelGrid>
-</h:form>
+        <div style="text-align: center;">
+            <h:commandButton style="align-content: center" action="criar.xhtml?faces-redirect=true"
+                             value="Adicionar Novas Músicas" class="btn btn-success">
+            </h:commandButton>
+        </div>
+    </h:form>
+</h:body>
 </html>

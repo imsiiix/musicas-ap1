@@ -1,40 +1,59 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-<h:head>
+<html xmlns:h="http://java.sun.com/jsf/html">
 
+<h:head>
+    <title>Atualize suas Músicas</title>
+    <h:outputStylesheet name="/css/bootstrap.min.css"/>
 </h:head>
 
 <h:body>
     <h:form id="form">
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <h2 style="text-align: center">Atualize suas músicas</h2>
+            </div>
+        </div>
+        <hr/>
 
-        <h:panelGrid id="panel" header="Edita a música" columns="1"
-                 style="margin: 2% 15% 20px;">
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <h:outputLabel for="id">Id</h:outputLabel>
+                <h:inputText id="id" value="#{musicaBean.id}" disabled="true" class="form-control"/>
+            </div>
+        </div>
 
-            <h:panelGrid columns="4" style="border-style: none" layout="grid"
-                         styleClass="showcase-text-align-center">
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <h:outputLabel for="nome">Nome</h:outputLabel>
+                <h:inputText id="nome" value="#{musicaBean.nome}" class="form-control"/>
+            </div>
+        </div>
 
-                <h:outputLabel for="id" value="Nome: " style="border-style: none">
-                    <h:inputText id="id" value="#{musicaBean.musica.id}" disabled="true"/>
-                </h:outputLabel>
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <h:outputLabel for="banda">Banda</h:outputLabel>
+                <h:inputText id="banda" value="#{musicaBean.banda}" class="form-control"/>
+            </div>
+        </div>
 
-                <h:outputLabel for="nome" value="Nome: " style="border-style: none">
-                    <h:inputText id="nome" value="#{musicaBean.musica.nome}" required="true"/>
-                </h:outputLabel>
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <h:outputLabel for="compositor">Compositor</h:outputLabel>
+                <h:inputText id="compositor" value="#{musicaBean.compositor}" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <div style="text-align: center;">
+                    <h:commandButton value="Update" action="#{musicaBean.atualizar}"
+                                     class="btn btn-primary" style="width: 80px;">
+                    </h:commandButton>
+                </div>
+            </div>
+        </div>
 
-                <h:outputLabel for="banda" value="Banda: " style="border-style: none">
-                    <h:inputText id="banda" value="#{musicaBean.musica.banda}" required="true"/>
-                </h:outputLabel>
-
-                <h:outputLabel for="autor" value="Autor: " style="border-style: none">
-                    <h:inputText id="autor" value="#{musicaBean.musica.compositor}" required="true"/>
-                </h:outputLabel>
-            </h:panelGrid>
-        </h:panelGrid>
-        <h:commandButton action="#{musicaBean.atualizar()}" value="Editar Música"/>
     </h:form>
 </h:body>
 </html>
