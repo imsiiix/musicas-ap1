@@ -3,11 +3,9 @@ package dao;
 import entity.Musica;
 import util.JPAUtil;
 
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
-import java.util.Map;
 
 public class Dao {
 
@@ -26,7 +24,6 @@ public class Dao {
         m = em.find(Musica.class, musica.getId());
         em.getTransaction().commit();
         em.close();
-        System.out.println("Metodo BuscarPorId - DAO " + m.toString());
         return m;
     }
 

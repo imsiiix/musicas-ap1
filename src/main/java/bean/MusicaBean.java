@@ -11,11 +11,6 @@ import java.util.List;
 @ManagedBean
 public class MusicaBean {
 
-    private Long id;
-    private String nome;
-    private String banda;
-    private String compositor;
-
     private Musica musica = new Musica();
     private Dao dao = new Dao();
     private List<Musica> musicas = new ArrayList<>();
@@ -32,14 +27,12 @@ public class MusicaBean {
     }
 
     public String editar(Musica musica) {
-        musica = dao.buscarPorId(musica);
-        System.out.println("Metodo editar - BEAN - " + musica.toString());
+        dao.buscarPorId(musica);
         return "/editar.xhtml?faces-redirect=true";
     }
 
-    public String atualizar(Musica musica) {
+    public String atualizar() {
         dao.atualizar(musica);
-        System.out.println("Método atualizar - BEAN - " + musica.toString());
         return "/listar.xhtml?faces-redirect=true";
     }
 
@@ -49,38 +42,6 @@ public class MusicaBean {
 
     public List musicasDb() {
         return dao.listarTodos();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getBanda() {
-        return banda;
-    }
-
-    public void setBanda(String banda) {
-        this.banda = banda;
-    }
-
-    public String getCompositor() {
-        return compositor;
-    }
-
-    public void setCompositor(String compositor) {
-        this.compositor = compositor;
     }
 
     public Musica getMusica() {

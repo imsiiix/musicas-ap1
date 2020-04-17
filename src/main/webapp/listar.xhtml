@@ -4,28 +4,28 @@
 <html xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-        <title>Musicas</title>
+    <title>Musicas</title>
     <h:outputStylesheet name="/css/bootstrap.min.css"/>
     <style type="text/css">
-            table {
-                border-collapse: collapse;
-                width: 95%;
-            }
+        table {
+            border-collapse: collapse;
+            width: 95%;
+        }
 
-            th, td {
-                text-align: left;
-                padding: 8px;
-            }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
 
-            tr:nth-child(even) {
-                background-color: #f2f2f2
-            }
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
 
-            th {
-                background-color: #4CAF50;
-                color: white;
-            }
-        </style>
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 </h:head>
 
 <h:body>
@@ -33,7 +33,6 @@
         <div style="text-align: center;">
             <h2><h:outputText value="Músicas"/></h2>
         </div>
-        <!--binding="#{table}"-->
         <h:dataTable value="#{musicaBean.musicasDb()}" var="m"
                      class="table table-striped table-hover table-bordered">
             <h:column>
@@ -56,7 +55,7 @@
                 <f:facet name="header">Atualizar</f:facet>
                 <h:commandButton action="#{musicaBean.editar(m)}" value="Atualizar"
                                  class="btn btn-primary">
-                    <f:param name="editMusicaId" value="#{m.id}" />
+                    <f:param name="editMusicaId" value="#{m.id}"/>
                 </h:commandButton>
             </h:column>
             <h:column>
