@@ -9,26 +9,17 @@ import java.util.List;
 
 public class Dao {
 
-    public void criar(Musica m) {
-        EntityManager em = JPAUtil.createEntityManager();
-            em.getTransaction().begin();
-            em.persist(m);
-            em.getTransaction().commit();
-            em.close();
-    }
+    private Musica m = new Musica();
 
-    public Musica buscarPorId(Musica musica) {
+    public void create(Musica musica) {
         EntityManager em = JPAUtil.createEntityManager();
-        Musica m;
         em.getTransaction().begin();
-        m = em.find(Musica.class, musica.getId());
+        em.persist(musica);
         em.getTransaction().commit();
         em.close();
-        System.out.println(m.toString());
-        return m;
     }
 
-    public void atualizar(Musica musica) {
+    public void update(Musica musica) {
         EntityManager em = JPAUtil.createEntityManager();
         em.getTransaction().begin();
         em.merge(musica);
@@ -36,9 +27,8 @@ public class Dao {
         em.close();
     }
 
-    public void deletar(Musica musica) {
+    public void delete(Musica musica) {
         EntityManager em = JPAUtil.createEntityManager();
-        Musica m;
         em.getTransaction().begin();
         m = em.find(Musica.class, musica.getId());
         em.remove(m);
@@ -46,7 +36,7 @@ public class Dao {
         em.close();
     }
 
-    public List listarTodos() {
+    public List listAll() {
         EntityManager em = JPAUtil.createEntityManager();
         Query q = em.createQuery("select m from Musica m");
         return q.getResultList();

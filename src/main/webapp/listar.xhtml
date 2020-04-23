@@ -29,11 +29,11 @@
 </h:head>
 
 <h:body>
-    <h:form>
+    <h:form id="form">
         <div style="text-align: center;">
             <h2><h:outputText value="Músicas"/></h2>
         </div>
-        <h:dataTable value="#{musicaBean.musicasDb()}" var="m"
+        <h:dataTable value="#{bean.musicas}" var="m"
                      class="table table-striped table-hover table-bordered">
             <h:column>
                 <f:facet name="header">Id</f:facet>
@@ -53,21 +53,21 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Atualizar</f:facet>
-                <h:commandButton action="#{musicaBean.editar}" value="Atualizar"
-                                 class="btn btn-primary">
-                    <f:setPropertyActionListener value="#{m}" target="#{musicaBean.musica}"/>
+                <h:commandButton action="#{bean.editar}" value="Atualizar"
+                                 class="btn btn-success">
+                    <f:setPropertyActionListener value="#{m}" target="#{bean.musica}"/>
                 </h:commandButton>
             </h:column>
             <h:column>
                 <f:facet name="header">Deletar</f:facet>
-                <h:commandButton action="#{musicaBean.deletar(m)}" value="Delete"
-                                 class="btn btn-danger">
+                <h:commandButton action="#{bean.deletar(m)}" value="Deletar"
+                                 class="btn btn-danger" render="@form">
                 </h:commandButton>
             </h:column>
         </h:dataTable>
         <div style="text-align: center;">
-            <h:commandButton style="align-content: center" action="criar.xhtml?faces-redirect=true"
-                             value="Adicionar Novas Músicas" class="btn btn-success">
+            <h:commandButton style="align-content: center" action="#{bean.criarNovo}"
+                             value="Adicionar Novas Músicas" class="btn btn-primary">
             </h:commandButton>
         </div>
     </h:form>
